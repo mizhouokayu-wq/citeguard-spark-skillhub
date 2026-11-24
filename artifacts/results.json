@@ -1,0 +1,944 @@
+{
+  "metadata": {
+    "title": "CiteGuard Benchmark Suite (10 Real & Synthetic-Hallucinated Academic Citations)",
+    "model": "Spark-X2.6-4B-Q4_K_M",
+    "skill": "citation-integrity-verifier v20261104.101003"
+  },
+  "items": [
+    {
+      "citation": {
+        "ref_id": "R1",
+        "raw_text": "[1] Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need[C]//Advances in Neural Information Processing Systems. 2017. arXiv:1706.03762",
+        "format_detected": "GB/T 7714",
+        "title": "Attention Is All You Need",
+        "authors": [
+          "Vaswani A",
+          "Shazeer N",
+          "Parmar N",
+          "et al"
+        ],
+        "year": 2017,
+        "venue": "2017. arXiv:1706.03762",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "1706.03762",
+        "claim_text": "Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=1706.03762",
+        "http_status": 200,
+        "title": "Attention Is All You Need",
+        "authors": [
+          "Ashish Vaswani",
+          "Noam Shazeer",
+          "Niki Parmar",
+          "Jakob Uszkoreit",
+          "Llion Jones",
+          "Aidan N. Gomez",
+          "Lukasz Kaiser",
+          "Illia Polosukhin"
+        ],
+        "year": 2017,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "1706.03762v7",
+        "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R1\",\n  \"raw_text\": \"[1] Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need[C]//Advances in Neural Information Processing Systems. 2017. arXiv:1706.03762\",\n  \"parsed_title\": \"Attention Is All You Need\",\n  \"parsed_authors\": [\n    \"Vaswani A\",\n    \"Shazeer N\",\n    \"Parmar N\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2017,\n  \"parsed_venue\": \"2017. arXiv:1706.03762\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"1706.03762\"\n}\n\n[MANUSCRIPT_CLAIM]\nVaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"Attention Is All You Need\",\n  \"authors\": [\n    \"Ashish Vaswani\",\n    \"Noam Shazeer\",\n    \"Niki Parmar\",\n    \"Jakob Uszkoreit\",\n    \"Llion Jones\",\n    \"Aidan N. Gomez\",\n    \"Lukasz Kaiser\",\n    \"Illia Polosukhin\"\n  ],\n  \"year\": 2017,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"1706.03762v7\",\n  \"abstract\": \"The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"venue\"],\n  \"claim_alignment\": \"支持\",\n  \"evidence_quote\": \"We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.\",\n  \"claim_quote\": \"Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.\",\n  \"reasoning_zh\": \"文献条目与检索到的原始文献在标题、年份及arXiv编号上一致，但作者列表不完整（条目以et al.省略，原始文献含完整作者）且venue表述不一致（条目为会议/预印本标识，原始为arXiv preprint），故元数据评估为部分不匹配。正文主张与原始文献摘要核心表述完全一致，因此主张对齐为支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "venue"
+          ],
+          "claim_alignment": "支持",
+          "evidence_quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "claim_quote": "Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "reasoning_zh": "文献条目与检索到的原始文献在标题、年份及arXiv编号上一致，但作者列表不完整（条目以et al.省略，原始文献含完整作者）且venue表述不一致（条目为会议/预印本标识，原始为arXiv preprint），故元数据评估为部分不匹配。正文主张与原始文献摘要核心表述完全一致，因此主张对齐为支持。"
+        },
+        "elapsed_sec": 4.17,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R1",
+        "status": "✅ 已核验存在",
+        "claim_alignment": "支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "Attention Is All You Need",
+            "retrieved": "Attention Is All You Need",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2017",
+            "retrieved": "2017",
+            "matched": true
+          },
+          {
+            "field_name": "author",
+            "expected": "Vaswani A, Shazeer N, Parmar N",
+            "retrieved": "Ashish Vaswani, Noam Shazeer, Niki Parmar",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [],
+        "evidence_quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+        "evidence_quote_verified": true,
+        "claim_quote": "Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "文献条目与检索到的原始文献在标题、年份及arXiv编号上一致，但作者列表不完整（条目以et al.省略，原始文献含完整作者）且venue表述不一致（条目为会议/预印本标识，原始为arXiv preprint），故元数据评估为部分不匹配。正文主张与原始文献摘要核心表述完全一致，因此主张对齐为支持。",
+        "repair_suggestion": null,
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R2",
+        "raw_text": "[2] Hu E J, Shen Y, Wallis P, et al. LoRA: Low-Rank Adaptation of Large Language Models[J]. 2021. arXiv:2106.09685",
+        "format_detected": "GB/T 7714",
+        "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+        "authors": [
+          "Hu E J",
+          "Shen Y",
+          "Wallis P",
+          "et al"
+        ],
+        "year": 2021,
+        "venue": "2021. arXiv:2106.09685",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "2106.09685",
+        "claim_text": "LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=2106.09685",
+        "http_status": 200,
+        "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+        "authors": [
+          "Edward J. Hu",
+          "Yelong Shen",
+          "Phillip Wallis",
+          "Zeyuan Allen-Zhu",
+          "Yuanzhi Li",
+          "Shean Wang",
+          "Lu Wang",
+          "Weizhu Chen"
+        ],
+        "year": 2021,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2106.09685v2",
+        "abstract": "An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine-tuning, which retrains all model parameters, becomes less feasible. Using GPT-3 175B as an example -- deploying independent instances of fine-tuned models, each with 175B parameters, is prohibitively expensive. We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks. Compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and, unlike adapters, no additional inference latency. We also provide an empirical investigation into rank-deficiency in language model adaptation, which sheds light on the efficacy of LoRA. We release a package that facilitates the integration of LoRA with PyTorch models and provide our implementations and model checkpoints for RoBERTa, DeBERTa, and GPT-2 at https://github.com/microsoft/LoRA.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R2\",\n  \"raw_text\": \"[2] Hu E J, Shen Y, Wallis P, et al. LoRA: Low-Rank Adaptation of Large Language Models[J]. 2021. arXiv:2106.09685\",\n  \"parsed_title\": \"LoRA: Low-Rank Adaptation of Large Language Models\",\n  \"parsed_authors\": [\n    \"Hu E J\",\n    \"Shen Y\",\n    \"Wallis P\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2021,\n  \"parsed_venue\": \"2021. arXiv:2106.09685\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"2106.09685\"\n}\n\n[MANUSCRIPT_CLAIM]\nLoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"LoRA: Low-Rank Adaptation of Large Language Models\",\n  \"authors\": [\n    \"Edward J. Hu\",\n    \"Yelong Shen\",\n    \"Phillip Wallis\",\n    \"Zeyuan Allen-Zhu\",\n    \"Yuanzhi Li\",\n    \"Shean Wang\",\n    \"Lu Wang\",\n    \"Weizhu Chen\"\n  ],\n  \"year\": 2021,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"2106.09685v2\",\n  \"abstract\": \"An important paradigm of natural language processing consists of large-scale pre-training on general domain data and adaptation to particular tasks or domains. As we pre-train larger models, full fine-tuning, which retrains all model parameters, becomes less feasible. Using GPT-3 175B as an example -- deploying independent instances of fine-tuned models, each with 175B parameters, is prohibitively expensive. We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks. Compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times. LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and, unlike adapters, no additional inference latency. We also provide an empirical investigation into rank-deficiency in language model adaptation, which sheds light on the efficacy of LoRA. We release a package that facilitates the integration of LoRA with PyTorch models and provide our implementations and model checkpoints for RoBERTa, DeBERTa, and GPT-2 at https://github.com/microsoft/LoRA.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"venue\"],\n  \"claim_alignment\": \"支持\",\n  \"evidence_quote\": \"We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.\",\n  \"claim_quote\": \"LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.\",\n  \"reasoning_zh\": \"经核对，所引文献的标题、年份与arXiv编号与手稿引用一致，但作者列表与venue表述存在差异：CITED_ENTRY作者为Hu E J等且venue写作2021. arXiv:2106.09685，而RETRIEVED_GROUND_TRUTH作者为完整姓名列表且venue为arXiv preprint。手稿关于LoRA冻结预训练权重并注入可训练秩分解矩阵以降低可训练参数的表述与文献摘要核心内容一致，故claim_alignment为支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "venue"
+          ],
+          "claim_alignment": "支持",
+          "evidence_quote": "We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.",
+          "claim_quote": "LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.",
+          "reasoning_zh": "经核对，所引文献的标题、年份与arXiv编号与手稿引用一致，但作者列表与venue表述存在差异：CITED_ENTRY作者为Hu E J等且venue写作2021. arXiv:2106.09685，而RETRIEVED_GROUND_TRUTH作者为完整姓名列表且venue为arXiv preprint。手稿关于LoRA冻结预训练权重并注入可训练秩分解矩阵以降低可训练参数的表述与文献摘要核心内容一致，故claim_alignment为支持。"
+        },
+        "elapsed_sec": 4.72,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R2",
+        "status": "✅ 已核验存在",
+        "claim_alignment": "支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "LoRA: Low-Rank Adaptation of Large Language Models",
+            "retrieved": "LoRA: Low-Rank Adaptation of Large Language Models",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2021",
+            "retrieved": "2021",
+            "matched": true
+          },
+          {
+            "field_name": "author",
+            "expected": "Hu E J, Shen Y, Wallis P",
+            "retrieved": "Edward J. Hu, Yelong Shen, Phillip Wallis",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [],
+        "evidence_quote": "We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.",
+        "evidence_quote_verified": true,
+        "claim_quote": "LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "经核对，所引文献的标题、年份与arXiv编号与手稿引用一致，但作者列表与venue表述存在差异：CITED_ENTRY作者为Hu E J等且venue写作2021. arXiv:2106.09685，而RETRIEVED_GROUND_TRUTH作者为完整姓名列表且venue为arXiv preprint。手稿关于LoRA冻结预训练权重并注入可训练秩分解矩阵以降低可训练参数的表述与文献摘要核心内容一致，故claim_alignment为支持。",
+        "repair_suggestion": null,
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R3",
+        "raw_text": "[3] Lewis P, Perez E, Piktus A, et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks[C]//NeurIPS. 2020. arXiv:2005.11401",
+        "format_detected": "GB/T 7714",
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+        "authors": [
+          "Lewis P",
+          "Perez E",
+          "Piktus A",
+          "et al"
+        ],
+        "year": 2020,
+        "venue": "2020. arXiv:2005.11401",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "2005.11401",
+        "claim_text": "RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=2005.11401",
+        "http_status": 200,
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+        "authors": [
+          "Patrick Lewis",
+          "Ethan Perez",
+          "Aleksandra Piktus",
+          "Fabio Petroni",
+          "Vladimir Karpukhin",
+          "Naman Goyal",
+          "Heinrich Küttler",
+          "Mike Lewis",
+          "Wen-tau Yih",
+          "Tim Rocktäschel",
+          "Sebastian Riedel",
+          "Douwe Kiela"
+        ],
+        "year": 2020,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2005.11401v4",
+        "abstract": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pre-trained models with a differentiable access mechanism to explicit non-parametric memory can overcome this issue, but have so far been only investigated for extractive downstream tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) -- models which combine pre-trained parametric and non-parametric memory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever. We compare two RAG formulations, one which conditions on the same retrieved passages across the whole generated sequence, the other can use different passages per token. We fine-tune and evaluate our models on a wide range of knowledge-intensive NLP tasks and set the state-of-the-art on three open domain QA tasks, outperforming parametric seq2seq models and task-specific retrieve-and-extract architectures. For language generation tasks, we find that RAG models generate more specific, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R3\",\n  \"raw_text\": \"[3] Lewis P, Perez E, Piktus A, et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks[C]//NeurIPS. 2020. arXiv:2005.11401\",\n  \"parsed_title\": \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\",\n  \"parsed_authors\": [\n    \"Lewis P\",\n    \"Perez E\",\n    \"Piktus A\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2020,\n  \"parsed_venue\": \"2020. arXiv:2005.11401\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"2005.11401\"\n}\n\n[MANUSCRIPT_CLAIM]\nRAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\",\n  \"authors\": [\n    \"Patrick Lewis\",\n    \"Ethan Perez\",\n    \"Aleksandra Piktus\",\n    \"Fabio Petroni\",\n    \"Vladimir Karpukhin\",\n    \"Naman Goyal\",\n    \"Heinrich Küttler\",\n    \"Mike Lewis\"\n  ],\n  \"year\": 2020,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"2005.11401v4\",\n  \"abstract\": \"Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. Additionally, providing provenance for their decisions and updating their world knowledge remain open research problems. Pre-trained models with a differentiable access mechanism to explicit non-parametric memory can overcome this issue, but have so far been only investigated for extractive downstream tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) -- models which combine pre-trained parametric and non-parametric memory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever. We compare two RAG formulations, one which conditions on the same retrieved passages across the whole generated sequence, the other can use different passages per token. We fine-tune and evaluate our models on a wide range of knowledge-intensive NLP tasks and set the state-of-the-art on three open domain QA tasks, outperforming parametric seq2seq models and task-specific retrieve-and-extract architectures. For language generation tasks, we find that RAG models generate more specific, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"venue\"],\n  \"claim_alignment\": \"部分支持\",\n  \"evidence_quote\": \"We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.\",\n  \"claim_quote\": \"RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.\",\n  \"reasoning_zh\": \"元数据方面，引用条目作者为Lewis等且年份为2020，与 ground truth 一致，但作者列表不完整且venue表述与ground truth的arXiv preprint不一致，故为部分匹配。claim方面，ground truth正文支持RAG结合预训练参数记忆与维基百科非参数稠密向量索引的表述，但未提供医学执照考试100%准确率的证据，因此仅部分支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "venue"
+          ],
+          "claim_alignment": "部分支持",
+          "evidence_quote": "We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.",
+          "claim_quote": "RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.",
+          "reasoning_zh": "元数据方面，引用条目作者为Lewis等且年份为2020，与 ground truth 一致，但作者列表不完整且venue表述与ground truth的arXiv preprint不一致，故为部分匹配。claim方面，ground truth正文支持RAG结合预训练参数记忆与维基百科非参数稠密向量索引的表述，但未提供医学执照考试100%准确率的证据，因此仅部分支持。"
+        },
+        "elapsed_sec": 4.33,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R3",
+        "status": "✅ 已核验存在",
+        "claim_alignment": "部分支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "retrieved": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2020",
+            "retrieved": "2020",
+            "matched": true
+          },
+          {
+            "field_name": "author",
+            "expected": "Lewis P, Perez E, Piktus A",
+            "retrieved": "Patrick Lewis, Ethan Perez, Aleksandra Piktus",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [],
+        "evidence_quote": "We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.",
+        "evidence_quote_verified": true,
+        "claim_quote": "RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "元数据方面，引用条目作者为Lewis等且年份为2020，与 ground truth 一致，但作者列表不完整且venue表述与ground truth的arXiv preprint不一致，故为部分匹配。claim方面，ground truth正文支持RAG结合预训练参数记忆与维基百科非参数稠密向量索引的表述，但未提供医学执照考试100%准确率的证据，因此仅部分支持。",
+        "repair_suggestion": null,
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R4",
+        "raw_text": "[4] Devlin J, Chang M W, Lee K, et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding[C]//NAACL. 2018. arXiv:1810.04805",
+        "format_detected": "GB/T 7714",
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "authors": [
+          "Devlin J",
+          "Chang M W",
+          "Lee K",
+          "et al"
+        ],
+        "year": 2018,
+        "venue": "2018. arXiv:1810.04805",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "1810.04805",
+        "claim_text": "Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.",
+        "parse_warnings": [
+          "Detected '10.' substring that failed strict DOI syntax match"
+        ]
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=1810.04805",
+        "http_status": 200,
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "authors": [
+          "Jacob Devlin",
+          "Ming-Wei Chang",
+          "Kenton Lee",
+          "Kristina Toutanova"
+        ],
+        "year": 2018,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "1810.04805v2",
+        "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R4\",\n  \"raw_text\": \"[4] Devlin J, Chang M W, Lee K, et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding[C]//NAACL. 2018. arXiv:1810.04805\",\n  \"parsed_title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\",\n  \"parsed_authors\": [\n    \"Devlin J\",\n    \"Chang M W\",\n    \"Lee K\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2018,\n  \"parsed_venue\": \"2018. arXiv:1810.04805\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"1810.04805\"\n}\n\n[MANUSCRIPT_CLAIM]\nDevlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\",\n  \"authors\": [\n    \"Jacob Devlin\",\n    \"Ming-Wei Chang\",\n    \"Kenton Lee\",\n    \"Kristina Toutanova\"\n  ],\n  \"year\": 2018,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"1810.04805v2\",\n  \"abstract\": \"We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"venue\"],\n  \"claim_alignment\": \"矛盾\",\n  \"evidence_quote\": \"Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.\",\n  \"claim_quote\": \"Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.\",\n  \"reasoning_zh\": \"引用条目与检索到的 ground truth 在作者列表、会议/发表venue表述上存在差异，且核心主张完全相反：ground truth 明确说明 BERT 是双向编码、联合条件化左右上下文，而手稿声称其被限制为单向左到右因果注意力、无法条件化右上下文，因此主张与文献内容矛盾。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "venue"
+          ],
+          "claim_alignment": "矛盾",
+          "evidence_quote": "Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.",
+          "claim_quote": "Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.",
+          "reasoning_zh": "引用条目与检索到的 ground truth 在作者列表、会议/发表venue表述上存在差异，且核心主张完全相反：ground truth 明确说明 BERT 是双向编码、联合条件化左右上下文，而手稿声称其被限制为单向左到右因果注意力、无法条件化右上下文，因此主张与文献内容矛盾。"
+        },
+        "elapsed_sec": 3.76,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R4",
+        "status": "✅ 已核验存在",
+        "claim_alignment": "矛盾",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+            "retrieved": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2018",
+            "retrieved": "2018",
+            "matched": true
+          },
+          {
+            "field_name": "author",
+            "expected": "Devlin J, Chang M W, Lee K",
+            "retrieved": "Jacob Devlin, Ming-Wei Chang, Kenton Lee",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [],
+        "evidence_quote": "Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.",
+        "evidence_quote_verified": true,
+        "claim_quote": "Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "引用条目与检索到的 ground truth 在作者列表、会议/发表venue表述上存在差异，且核心主张完全相反：ground truth 明确说明 BERT 是双向编码、联合条件化左右上下文，而手稿声称其被限制为单向左到右因果注意力、无法条件化右上下文，因此主张与文献内容矛盾。",
+        "repair_suggestion": null,
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R5",
+        "raw_text": "[5] Brown T B, Mann B, Ryder N, et al. Language Models are Few-Shot Learners[C]//NeurIPS. 2020. arXiv:2005.14165",
+        "format_detected": "GB/T 7714",
+        "title": "Language Models are Few-Shot Learners",
+        "authors": [
+          "Brown T B",
+          "Mann B",
+          "Ryder N",
+          "et al"
+        ],
+        "year": 2020,
+        "venue": "2020. arXiv:2005.14165",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "2005.14165",
+        "claim_text": "The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=2005.14165",
+        "http_status": 200,
+        "title": "Language Models are Few-Shot Learners",
+        "authors": [
+          "Tom B. Brown",
+          "Benjamin Mann",
+          "Nick Ryder",
+          "Melanie Subbiah",
+          "Jared Kaplan",
+          "Prafulla Dhariwal",
+          "Arvind Neelakantan",
+          "Pranav Shyam",
+          "Girish Sastry",
+          "Amanda Askell",
+          "Sandhini Agarwal",
+          "Ariel Herbert-Voss",
+          "Gretchen Krueger",
+          "Tom Henighan",
+          "Rewon Child",
+          "Aditya Ramesh",
+          "Daniel M. Ziegler",
+          "Jeffrey Wu",
+          "Clemens Winter",
+          "Christopher Hesse",
+          "Mark Chen",
+          "Eric Sigler",
+          "Mateusz Litwin",
+          "Scott Gray",
+          "Benjamin Chess",
+          "Jack Clark",
+          "Christopher Berner",
+          "Sam McCandlish",
+          "Alec Radford",
+          "Ilya Sutskever",
+          "Dario Amodei"
+        ],
+        "year": 2020,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2005.14165v4",
+        "abstract": "Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets of thousands or tens of thousands of examples. By contrast, humans can generally perform a new language task from only a few examples or from simple instructions - something which current NLP systems still largely struggle to do. Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model. GPT-3 achieves strong performance on many NLP datasets, including translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic. At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. We discuss broader societal impacts of this finding and of GPT-3 in general.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R5\",\n  \"raw_text\": \"[5] Brown T B, Mann B, Ryder N, et al. Language Models are Few-Shot Learners[C]//NeurIPS. 2020. arXiv:2005.14165\",\n  \"parsed_title\": \"Language Models are Few-Shot Learners\",\n  \"parsed_authors\": [\n    \"Brown T B\",\n    \"Mann B\",\n    \"Ryder N\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2020,\n  \"parsed_venue\": \"2020. arXiv:2005.14165\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"2005.14165\"\n}\n\n[MANUSCRIPT_CLAIM]\nThe Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"Language Models are Few-Shot Learners\",\n  \"authors\": [\n    \"Tom B. Brown\",\n    \"Benjamin Mann\",\n    \"Nick Ryder\",\n    \"Melanie Subbiah\",\n    \"Jared Kaplan\",\n    \"Prafulla Dhariwal\",\n    \"Arvind Neelakantan\",\n    \"Pranav Shyam\"\n  ],\n  \"year\": 2020,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"2005.14165v4\",\n  \"abstract\": \"Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets of thousands or tens of thousands of examples. By contrast, humans can generally perform a new language task from only a few examples or from simple instructions - something which current NLP systems still largely struggle to do. Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model. GPT-3 achieves strong performance on many NLP datasets, including translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic. At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. We discuss broader societal impacts of this finding and of GPT-3 in general.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"venue\"],\n  \"claim_alignment\": \"支持\",\n  \"evidence_quote\": \"Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model.\",\n  \"claim_quote\": \"The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.\",\n  \"reasoning_zh\": \"文献条目与检索到的真实文献在标题、年份、arXiv编号上一致，但作者列表与venue表述存在差异（作者为完整列表且venue为arXiv preprint），故元数据评估为部分不匹配。手稿主张与论文摘要内容在核心结论上一致，均说明通过扩展自回归语言模型、不经过梯度更新即可获得强少样本性能，因此主张对齐为支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "venue"
+          ],
+          "claim_alignment": "支持",
+          "evidence_quote": "Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model.",
+          "claim_quote": "The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.",
+          "reasoning_zh": "文献条目与检索到的真实文献在标题、年份、arXiv编号上一致，但作者列表与venue表述存在差异（作者为完整列表且venue为arXiv preprint），故元数据评估为部分不匹配。手稿主张与论文摘要内容在核心结论上一致，均说明通过扩展自回归语言模型、不经过梯度更新即可获得强少样本性能，因此主张对齐为支持。"
+        },
+        "elapsed_sec": 5.23,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R5",
+        "status": "✅ 已核验存在",
+        "claim_alignment": "支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "Language Models are Few-Shot Learners",
+            "retrieved": "Language Models are Few-Shot Learners",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2020",
+            "retrieved": "2020",
+            "matched": true
+          },
+          {
+            "field_name": "author",
+            "expected": "Brown T B, Mann B, Ryder N",
+            "retrieved": "Tom B. Brown, Benjamin Mann, Nick Ryder",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [],
+        "evidence_quote": "Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model.",
+        "evidence_quote_verified": true,
+        "claim_quote": "The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "文献条目与检索到的真实文献在标题、年份、arXiv编号上一致，但作者列表与venue表述存在差异（作者为完整列表且venue为arXiv preprint），故元数据评估为部分不匹配。手稿主张与论文摘要内容在核心结论上一致，均说明通过扩展自回归语言模型、不经过梯度更新即可获得强少样本性能，因此主张对齐为支持。",
+        "repair_suggestion": null,
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R6",
+        "raw_text": "[6] Touvron H, Lavril T, Izacard G, et al. Attention Is All You Need[J]. Nature, 2023. arXiv:1706.03762",
+        "format_detected": "GB/T 7714",
+        "title": "Attention Is All You Need",
+        "authors": [
+          "Touvron H",
+          "Lavril T",
+          "Izacard G",
+          "et al"
+        ],
+        "year": 2023,
+        "venue": "Nature, 2023. arXiv:1706.03762",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "1706.03762",
+        "claim_text": "Touvron et al. (2023) introduced the Transformer architecture in Nature.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=1706.03762",
+        "http_status": 200,
+        "title": "Attention Is All You Need",
+        "authors": [
+          "Ashish Vaswani",
+          "Noam Shazeer",
+          "Niki Parmar",
+          "Jakob Uszkoreit",
+          "Llion Jones",
+          "Aidan N. Gomez",
+          "Lukasz Kaiser",
+          "Illia Polosukhin"
+        ],
+        "year": 2017,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "1706.03762v7",
+        "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R6\",\n  \"raw_text\": \"[6] Touvron H, Lavril T, Izacard G, et al. Attention Is All You Need[J]. Nature, 2023. arXiv:1706.03762\",\n  \"parsed_title\": \"Attention Is All You Need\",\n  \"parsed_authors\": [\n    \"Touvron H\",\n    \"Lavril T\",\n    \"Izacard G\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2023,\n  \"parsed_venue\": \"Nature, 2023. arXiv:1706.03762\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"1706.03762\"\n}\n\n[MANUSCRIPT_CLAIM]\nTouvron et al. (2023) introduced the Transformer architecture in Nature.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"Attention Is All You Need\",\n  \"authors\": [\n    \"Ashish Vaswani\",\n    \"Noam Shazeer\",\n    \"Niki Parmar\",\n    \"Jakob Uszkoreit\",\n    \"Llion Jones\",\n    \"Aidan N. Gomez\",\n    \"Lukasz Kaiser\",\n    \"Illia Polosukhin\"\n  ],\n  \"year\": 2017,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"1706.03762v7\",\n  \"abstract\": \"The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"year\", \"venue\"],\n  \"claim_alignment\": \"部分支持\",\n  \"evidence_quote\": \"We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.\",\n  \"claim_quote\": \"Touvron et al. (2023) introduced the Transformer architecture in Nature.\",\n  \"reasoning_zh\": \"引用条目与检索到的原始文献在作者、年份、发表venue上存在差异：原始文献实际作者为Ashish Vaswani等，年份为2017，venue为arXiv preprint，而引用条目写为Touvron等、2023、Nature。但核心主张（提出基于注意力机制的Transformer架构）与原始文献摘要内容一致，因此claim对齐为部分支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "year",
+            "venue"
+          ],
+          "claim_alignment": "部分支持",
+          "evidence_quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "claim_quote": "Touvron et al. (2023) introduced the Transformer architecture in Nature.",
+          "reasoning_zh": "引用条目与检索到的原始文献在作者、年份、发表venue上存在差异：原始文献实际作者为Ashish Vaswani等，年份为2017，venue为arXiv preprint，而引用条目写为Touvron等、2023、Nature。但核心主张（提出基于注意力机制的Transformer架构）与原始文献摘要内容一致，因此claim对齐为部分支持。"
+        },
+        "elapsed_sec": 3.73,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R6",
+        "status": "⚠️ 存疑",
+        "claim_alignment": "部分支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "Attention Is All You Need",
+            "retrieved": "Attention Is All You Need",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2023",
+            "retrieved": "2017",
+            "matched": false
+          },
+          {
+            "field_name": "author",
+            "expected": "Touvron H, Lavril T, Izacard G",
+            "retrieved": "Ashish Vaswani, Noam Shazeer, Niki Parmar",
+            "matched": false
+          }
+        ],
+        "hallucination_patterns": [
+          "张冠李戴风险：引用作者与检索文献作者无交集",
+          "发表年份不一致（引用 2023 vs 检索 2017）"
+        ],
+        "evidence_quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+        "evidence_quote_verified": true,
+        "claim_quote": "Touvron et al. (2023) introduced the Transformer architecture in Nature.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "引用条目与检索到的原始文献在作者、年份、发表venue上存在差异：原始文献实际作者为Ashish Vaswani等，年份为2017，venue为arXiv preprint，而引用条目写为Touvron等、2023、Nature。但核心主张（提出基于注意力机制的Transformer架构）与原始文献摘要内容一致，因此claim对齐为部分支持。",
+        "repair_suggestion": "待作者自行核验：检索到的真实题录为《Attention Is All You Need》（Ashish Vaswani, Noam Shazeer, Niki Parmar, 2017）",
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R7",
+        "raw_text": "[7] Wei J, Wang X, Schuurmans D, et al. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models[J]. 2019. arXiv:2201.11903",
+        "format_detected": "GB/T 7714",
+        "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+        "authors": [
+          "Wei J",
+          "Wang X",
+          "Schuurmans D",
+          "et al"
+        ],
+        "year": 2019,
+        "venue": "2019. arXiv:2201.11903",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": "2201.11903",
+        "claim_text": "Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": true,
+        "source": "arXiv",
+        "lookup_method": "arxiv_id_exact",
+        "lookup_url": "https://export.arxiv.org/api/query?id_list=2201.11903",
+        "http_status": 200,
+        "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+        "authors": [
+          "Jason Wei",
+          "Xuezhi Wang",
+          "Dale Schuurmans",
+          "Maarten Bosma",
+          "Brian Ichter",
+          "Fei Xia",
+          "Ed Chi",
+          "Quoc Le",
+          "Denny Zhou"
+        ],
+        "year": 2022,
+        "venue": "arXiv preprint",
+        "doi": null,
+        "arxiv_id": "2201.11903v6",
+        "abstract": "We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning. In particular, we show how such reasoning abilities emerge naturally in sufficiently large language models via a simple method called chain of thought prompting, where a few chain of thought demonstrations are provided as exemplars in prompting. Experiments on three large language models show that chain of thought prompting improves performance on a range of arithmetic, commonsense, and symbolic reasoning tasks. The empirical gains can be striking. For instance, prompting a 540B-parameter language model with just eight chain of thought exemplars achieves state of the art accuracy on the GSM8K benchmark of math word problems, surpassing even finetuned GPT-3 with a verifier.",
+        "error": null,
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R7\",\n  \"raw_text\": \"[7] Wei J, Wang X, Schuurmans D, et al. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models[J]. 2019. arXiv:2201.11903\",\n  \"parsed_title\": \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\",\n  \"parsed_authors\": [\n    \"Wei J\",\n    \"Wang X\",\n    \"Schuurmans D\",\n    \"et al\"\n  ],\n  \"parsed_year\": 2019,\n  \"parsed_venue\": \"2019. arXiv:2201.11903\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": \"2201.11903\"\n}\n\n[MANUSCRIPT_CLAIM]\nChain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": true,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_id_exact\",\n  \"http_status\": 200,\n  \"title\": \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\",\n  \"authors\": [\n    \"Jason Wei\",\n    \"Xuezhi Wang\",\n    \"Dale Schuurmans\",\n    \"Maarten Bosma\",\n    \"Brian Ichter\",\n    \"Fei Xia\",\n    \"Ed Chi\",\n    \"Quoc Le\"\n  ],\n  \"year\": 2022,\n  \"venue\": \"arXiv preprint\",\n  \"doi\": null,\n  \"arxiv_id\": \"2201.11903v6\",\n  \"abstract\": \"We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning. In particular, we show how such reasoning abilities emerge naturally in sufficiently large language models via a simple method called chain of thought prompting, where a few chain of thought demonstrations are provided as exemplars in prompting. Experiments on three large language models show that chain of thought prompting improves performance on a range of arithmetic, commonsense, and symbolic reasoning tasks. The empirical gains can be striking. For instance, prompting a 540B-parameter language model with just eight chain of thought exemplars achieves state of the art accuracy on the GSM8K benchmark of math word problems, surpassing even finetuned GPT-3 with a verifier.\",\n  \"error\": null\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"partial_mismatch\",\n  \"mismatch_fields\": [\"author\", \"year\", \"venue\"],\n  \"claim_alignment\": \"支持\",\n  \"evidence_quote\": \"We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning.\",\n  \"claim_quote\": \"Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.\",\n  \"reasoning_zh\": \"文献条目与检索到的原始文献在标题、arXiv编号上一致，但作者列表、年份（条目为2019，原始为2022）及venue（条目为arXiv预印本标识，原始为arXiv preprint）存在差异，故元数据评估为部分不匹配。手稿关于链式思维提示提升大模型复杂推理的表述与原始文献摘要核心内容一致，因此主张对齐为支持。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "partial_mismatch",
+          "mismatch_fields": [
+            "author",
+            "year",
+            "venue"
+          ],
+          "claim_alignment": "支持",
+          "evidence_quote": "We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning.",
+          "claim_quote": "Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.",
+          "reasoning_zh": "文献条目与检索到的原始文献在标题、arXiv编号上一致，但作者列表、年份（条目为2019，原始为2022）及venue（条目为arXiv预印本标识，原始为arXiv preprint）存在差异，故元数据评估为部分不匹配。手稿关于链式思维提示提升大模型复杂推理的表述与原始文献摘要核心内容一致，因此主张对齐为支持。"
+        },
+        "elapsed_sec": 3.82,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R7",
+        "status": "⚠️ 存疑",
+        "claim_alignment": "支持",
+        "field_diffs": [
+          {
+            "field_name": "title",
+            "expected": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+            "retrieved": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+            "matched": true
+          },
+          {
+            "field_name": "year",
+            "expected": "2019",
+            "retrieved": "2022",
+            "matched": false
+          },
+          {
+            "field_name": "author",
+            "expected": "Wei J, Wang X, Schuurmans D",
+            "retrieved": "Jason Wei, Xuezhi Wang, Dale Schuurmans",
+            "matched": true
+          }
+        ],
+        "hallucination_patterns": [
+          "发表年份不一致（引用 2019 vs 检索 2022）"
+        ],
+        "evidence_quote": "We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning.",
+        "evidence_quote_verified": true,
+        "claim_quote": "Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.",
+        "claim_quote_verified": true,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "文献条目与检索到的原始文献在标题、arXiv编号上一致，但作者列表、年份（条目为2019，原始为2022）及venue（条目为arXiv预印本标识，原始为arXiv preprint）存在差异，故元数据评估为部分不匹配。手稿关于链式思维提示提升大模型复杂推理的表述与原始文献摘要核心内容一致，因此主张对齐为支持。",
+        "repair_suggestion": "待作者自行核验：检索到的真实题录为《Chain-of-Thought Prompting Elicits Reasoning in Large Language Models》（Jason Wei, Xuezhi Wang, Dale Schuurmans, 2022）",
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R8",
+        "raw_text": "[8] Chen X, Liu Y. Neural Symbolic Verification for Autonomous Agents[J]. Journal of Artificial Intelligence Research, 2024. doi:10.1145/9999999.8888888",
+        "format_detected": "GB/T 7714",
+        "title": "Neural Symbolic Verification for Autonomous Agents",
+        "authors": [
+          "Chen X",
+          "Liu Y"
+        ],
+        "year": 2024,
+        "venue": "Journal of Artificial Intelligence Research, 2024.",
+        "doi": "10.1145/9999999.8888888",
+        "doi_syntax_valid": true,
+        "arxiv_id": null,
+        "claim_text": "Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": false,
+        "source": "Crossref",
+        "lookup_method": "doi_exact",
+        "lookup_url": "https://api.crossref.org/works/10.1145%2F9999999.8888888",
+        "http_status": 404,
+        "title": null,
+        "authors": [],
+        "year": null,
+        "venue": null,
+        "doi": null,
+        "arxiv_id": null,
+        "abstract": null,
+        "error": "DOI not registered in Crossref (HTTP 404)",
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R8\",\n  \"raw_text\": \"[8] Chen X, Liu Y. Neural Symbolic Verification for Autonomous Agents[J]. Journal of Artificial Intelligence Research, 2024. doi:10.1145/9999999.8888888\",\n  \"parsed_title\": \"Neural Symbolic Verification for Autonomous Agents\",\n  \"parsed_authors\": [\n    \"Chen X\",\n    \"Liu Y\"\n  ],\n  \"parsed_year\": 2024,\n  \"parsed_venue\": \"Journal of Artificial Intelligence Research, 2024.\",\n  \"parsed_doi\": \"10.1145/9999999.8888888\",\n  \"parsed_arxiv_id\": null\n}\n\n[MANUSCRIPT_CLAIM]\nChen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": false,\n  \"source\": \"Crossref\",\n  \"lookup_method\": \"doi_exact\",\n  \"http_status\": 404,\n  \"title\": null,\n  \"authors\": [],\n  \"year\": null,\n  \"venue\": null,\n  \"doi\": null,\n  \"arxiv_id\": null,\n  \"abstract\": null,\n  \"error\": \"DOI not registered in Crossref (HTTP 404)\"\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"not_found\",\n  \"mismatch_fields\": [\"title\", \"author\", \"year\", \"venue\", \"doi\"],\n  \"claim_alignment\": \"未提供正文\",\n  \"evidence_quote\": null,\n  \"claim_quote\": \"Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.\",\n  \"reasoning_zh\": \"经Crossref按DOI精确检索，该文献未找到（HTTP 404，DOI未注册），因此无法核实标题、作者、年份、会议/期刊及DOI等元数据，也无法与正文主张进行对应验证。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "not_found",
+          "mismatch_fields": [
+            "title",
+            "author",
+            "year",
+            "venue",
+            "doi"
+          ],
+          "claim_alignment": "未提供正文",
+          "evidence_quote": null,
+          "claim_quote": "Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.",
+          "reasoning_zh": "经Crossref按DOI精确检索，该文献未找到（HTTP 404，DOI未注册），因此无法核实标题、作者、年份、会议/期刊及DOI等元数据，也无法与正文主张进行对应验证。"
+        },
+        "elapsed_sec": 2.78,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R8",
+        "status": "❌ 疑似编造",
+        "claim_alignment": "无关",
+        "field_diffs": [],
+        "hallucination_patterns": [
+          "DOI 编号格式合法但 Crossref 未注册（HTTP 404，典型 LLM 编造 DOI 模式）"
+        ],
+        "evidence_quote": null,
+        "evidence_quote_verified": null,
+        "claim_quote": null,
+        "claim_quote_verified": null,
+        "gate_overrides": [
+          "Gate: 目标文献未核验存在，禁止由模型宣称正文声明被支持"
+        ],
+        "spark_reasoning_zh": "经Crossref按DOI精确检索，该文献未找到（HTTP 404，DOI未注册），因此无法核实标题、作者、年份、会议/期刊及DOI等元数据，也无法与正文主张进行对应验证。",
+        "repair_suggestion": "建议删除该条目或由作者核对原始文献后重新补录（任何替代题录需作者自行核验）",
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R9",
+        "raw_text": "[9] Zhang W, Miller R. Quantum-Enhanced Prompt Alignment in Clinical LLMs[J]. Nature Medicine, 2025. doi:10.1038/s41591-025-99999-z",
+        "format_detected": "GB/T 7714",
+        "title": "Quantum-Enhanced Prompt Alignment in Clinical LLMs",
+        "authors": [
+          "Zhang W",
+          "Miller R"
+        ],
+        "year": 2025,
+        "venue": "Nature Medicine, 2025.",
+        "doi": "10.1038/s41591-025-99999-z",
+        "doi_syntax_valid": true,
+        "arxiv_id": null,
+        "claim_text": "Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.",
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": false,
+        "source": "Crossref",
+        "lookup_method": "doi_exact",
+        "lookup_url": "https://api.crossref.org/works/10.1038%2Fs41591-025-99999-z",
+        "http_status": 404,
+        "title": null,
+        "authors": [],
+        "year": null,
+        "venue": null,
+        "doi": null,
+        "arxiv_id": null,
+        "abstract": null,
+        "error": "DOI not registered in Crossref (HTTP 404)",
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R9\",\n  \"raw_text\": \"[9] Zhang W, Miller R. Quantum-Enhanced Prompt Alignment in Clinical LLMs[J]. Nature Medicine, 2025. doi:10.1038/s41591-025-99999-z\",\n  \"parsed_title\": \"Quantum-Enhanced Prompt Alignment in Clinical LLMs\",\n  \"parsed_authors\": [\n    \"Zhang W\",\n    \"Miller R\"\n  ],\n  \"parsed_year\": 2025,\n  \"parsed_venue\": \"Nature Medicine, 2025.\",\n  \"parsed_doi\": \"10.1038/s41591-025-99999-z\",\n  \"parsed_arxiv_id\": null\n}\n\n[MANUSCRIPT_CLAIM]\nQuantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": false,\n  \"source\": \"Crossref\",\n  \"lookup_method\": \"doi_exact\",\n  \"http_status\": 404,\n  \"title\": null,\n  \"authors\": [],\n  \"year\": null,\n  \"venue\": null,\n  \"doi\": null,\n  \"arxiv_id\": null,\n  \"abstract\": null,\n  \"error\": \"DOI not registered in Crossref (HTTP 404)\"\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"not_found\",\n  \"mismatch_fields\": [\"title\", \"author\", \"year\", \"venue\", \"doi\"],\n  \"claim_alignment\": \"未提供正文\",\n  \"evidence_quote\": null,\n  \"claim_quote\": \"Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.\",\n  \"reasoning_zh\": \"经Crossref按DOI精确检索，该文献未注册（HTTP 404），返回未找到任何标题、作者、年份、期刊或DOI信息，因此元数据无法与任何真实文献匹配；手稿主张因缺乏可核验的正文或文献支撑，无法进行有效对齐。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "not_found",
+          "mismatch_fields": [
+            "title",
+            "author",
+            "year",
+            "venue",
+            "doi"
+          ],
+          "claim_alignment": "未提供正文",
+          "evidence_quote": null,
+          "claim_quote": "Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.",
+          "reasoning_zh": "经Crossref按DOI精确检索，该文献未注册（HTTP 404），返回未找到任何标题、作者、年份、期刊或DOI信息，因此元数据无法与任何真实文献匹配；手稿主张因缺乏可核验的正文或文献支撑，无法进行有效对齐。"
+        },
+        "elapsed_sec": 2.65,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R9",
+        "status": "❌ 疑似编造",
+        "claim_alignment": "无关",
+        "field_diffs": [],
+        "hallucination_patterns": [
+          "DOI 编号格式合法但 Crossref 未注册（HTTP 404，典型 LLM 编造 DOI 模式）"
+        ],
+        "evidence_quote": null,
+        "evidence_quote_verified": null,
+        "claim_quote": null,
+        "claim_quote_verified": null,
+        "gate_overrides": [
+          "Gate: 目标文献未核验存在，禁止由模型宣称正文声明被支持"
+        ],
+        "spark_reasoning_zh": "经Crossref按DOI精确检索，该文献未注册（HTTP 404），返回未找到任何标题、作者、年份、期刊或DOI信息，因此元数据无法与任何真实文献匹配；手稿主张因缺乏可核验的正文或文献支撑，无法进行有效对齐。",
+        "repair_suggestion": "建议删除该条目或由作者核对原始文献后重新补录（任何替代题录需作者自行核验）",
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    },
+    {
+      "citation": {
+        "ref_id": "R10",
+        "raw_text": "[10] Internal Lab Working Group. 2025 年度内部评测基线白皮书[R]. 内部技术报告, 2025.",
+        "format_detected": "GB/T 7714",
+        "title": "2025 年度内部评测基线白皮书",
+        "authors": [
+          "Internal Lab Working Group"
+        ],
+        "year": 2025,
+        "venue": "内部技术报告, 2025.",
+        "doi": null,
+        "doi_syntax_valid": null,
+        "arxiv_id": null,
+        "claim_text": null,
+        "parse_warnings": []
+      },
+      "ground_truth": {
+        "found": false,
+        "source": "arXiv",
+        "lookup_method": "arxiv_title_search",
+        "lookup_url": "",
+        "http_status": null,
+        "title": null,
+        "authors": [],
+        "year": null,
+        "venue": null,
+        "doi": null,
+        "arxiv_id": null,
+        "abstract": null,
+        "error": "Skipped arXiv title search for non-ASCII / Chinese title (out of arXiv scope)",
+        "raw_snippet": null
+      },
+      "spark": {
+        "prompt": "[CITED_ENTRY]\n{\n  \"ref_id\": \"R10\",\n  \"raw_text\": \"[10] Internal Lab Working Group. 2025 年度内部评测基线白皮书[R]. 内部技术报告, 2025.\",\n  \"parsed_title\": \"2025 年度内部评测基线白皮书\",\n  \"parsed_authors\": [\n    \"Internal Lab Working Group\"\n  ],\n  \"parsed_year\": 2025,\n  \"parsed_venue\": \"内部技术报告, 2025.\",\n  \"parsed_doi\": null,\n  \"parsed_arxiv_id\": null\n}\n\n[MANUSCRIPT_CLAIM]\n未提供正文\n\n[RETRIEVED_GROUND_TRUTH]\n{\n  \"found\": false,\n  \"source\": \"arXiv\",\n  \"lookup_method\": \"arxiv_title_search\",\n  \"http_status\": null,\n  \"title\": null,\n  \"authors\": [],\n  \"year\": null,\n  \"venue\": null,\n  \"doi\": null,\n  \"arxiv_id\": null,\n  \"abstract\": null,\n  \"error\": \"Skipped arXiv title search for non-ASCII / Chinese title (out of arXiv scope)\"\n}\n\nOutput ONLY the JSON object:",
+        "raw_output": "{\n  \"metadata_assessment\": \"not_found\",\n  \"mismatch_fields\": [],\n  \"claim_alignment\": \"未提供正文\",\n  \"evidence_quote\": null,\n  \"claim_quote\": null,\n  \"reasoning_zh\": \"检索在arXiv范围内因标题为非ASCII/中文而跳过，未找到对应文献条目，因此元数据无法与外部真实文献匹配；手稿正文未提供，无法进行正文层面的核验。\"\n}",
+        "parsed_json": {
+          "metadata_assessment": "not_found",
+          "mismatch_fields": [],
+          "claim_alignment": "未提供正文",
+          "evidence_quote": null,
+          "claim_quote": null,
+          "reasoning_zh": "检索在arXiv范围内因标题为非ASCII/中文而跳过，未找到对应文献条目，因此元数据无法与外部真实文献匹配；手稿正文未提供，无法进行正文层面的核验。"
+        },
+        "elapsed_sec": 1.92,
+        "runtime_command": "POST http://127.0.0.1:18931/v1/chat/completions (temp=0, seed=42, reasoning=off)",
+        "error": null
+      },
+      "verdict": {
+        "ref_id": "R10",
+        "status": "⬜ 无法核验",
+        "claim_alignment": "未提供正文",
+        "field_diffs": [],
+        "hallucination_patterns": [
+          "检索边界外或网络受限：Skipped arXiv title search for non-ASCII / Chinese title (out of arXiv scope)"
+        ],
+        "evidence_quote": null,
+        "evidence_quote_verified": null,
+        "claim_quote": null,
+        "claim_quote_verified": null,
+        "gate_overrides": [],
+        "spark_reasoning_zh": "检索在arXiv范围内因标题为非ASCII/中文而跳过，未找到对应文献条目，因此元数据无法与外部真实文献匹配；手稿正文未提供，无法进行正文层面的核验。",
+        "repair_suggestion": "处于当前公开检索源边界之外，需人工核查原始馆藏/内部报告",
+        "search_scope": "Crossref REST API + arXiv API (export.arxiv.org) + OpenAlex Works API"
+      }
+    }
+  ]
+}

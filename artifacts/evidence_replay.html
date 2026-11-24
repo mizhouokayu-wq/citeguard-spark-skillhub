@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>CiteGuard · Spark-X2.6-4B × SkillHub Evidence Replay</title>
+<style>
+  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background:#0b1020; color:#e5e7eb; margin:0; padding:24px; }
+  header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid #24304a; padding-bottom:16px; margin-bottom:20px; }
+  h1 { margin:0; font-size:22px; color:#f8fafc; }
+  .sub { color:#94a3b8; font-size:13px; margin-top:4px; }
+  .stats { display:flex; gap:10px; flex-wrap:wrap; }
+  .stat { background:#131b31; border:1px solid #263352; border-radius:8px; padding:8px 14px; font-size:13px; }
+  .card { background:#11182c; border:1px solid #24304a; border-radius:10px; padding:16px; margin-bottom:14px; }
+  .card-head { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
+  .ref-id { font-weight:700; color:#38bdf8; font-family:monospace; font-size:14px; }
+  .badge { padding:3px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+  .badge.ok { background:#064e3b; color:#6ee7b7; }
+  .badge.warn { background:#78350f; color:#fcd34d; }
+  .badge.bad { background:#7f1d1d; color:#fca5a5; }
+  .badge.muted { background:#334155; color:#cbd5e1; }
+  .align-pill, .time-pill { background:#1e293b; color:#cbd5e1; padding:3px 10px; border-radius:6px; font-size:12px; }
+  .grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; }
+  .pane { background:#0b1222; border:1px solid #1e293b; border-radius:8px; padding:12px; font-size:12.5px; line-height:1.5; }
+  .pane h4 { margin:0 0 8px 0; font-size:12px; text-transform:uppercase; letter-spacing:0.04em; color:#7dd3fc; }
+  .raw { color:#cbd5e1; word-break:break-word; }
+  .claim { color:#fde68a; }
+  .spark-raw { background:#050914; border:1px solid #1e293b; padding:8px; border-radius:6px; overflow-x:auto; white-space:pre-wrap; word-break:break-word; font-size:11.5px; color:#a5f3fc; margin:0 0 8px 0; }
+  .ok-t { color:#34d399; font-weight:600; }
+  .bad-t { color:#f87171; font-weight:600; }
+  ul { margin:6px 0 0 18px; padding:0; }
+  .warn-list { color:#fca5a5; }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>CiteGuard · Academic Citation &amp; Claim Integrity Auditor</h1>
+      <div class="sub">SkillHub: <code>citation-integrity-verifier v20261104.101003</code> · Local Model: <code>Spark-X2.6-4B-Q4_K_M</code> · Registries: Crossref + arXiv</div>
+    </div>
+    <div class="stats">
+      <div class="stat">Total: <strong>10</strong></div>
+      <div class="stat">✅ Verified: <strong>5</strong></div>
+      <div class="stat">⚠️ Suspicious: <strong>2</strong></div>
+      <div class="stat">❌ Fabricated: <strong>2</strong></div>
+      <div class="stat">⬜ Unverifiable: <strong>1</strong></div>
+    </div>
+  </header>
+  
+        <section class="card" id="ref-1">
+          <div class="card-head">
+            <span class="ref-id">[R1]</span>
+            <span class="badge ok">✅ 已核验存在</span>
+            <span class="align-pill">Claim Alignment: <strong>支持</strong></span>
+            <span class="time-pill">Spark: 4.17s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[1] Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need[C]//Advances in Neural Information Processing Systems. 2017. arXiv:1706.03762</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> Attention Is All You Need</p>
+              <p><strong>Authors / Year:</strong> Ashish Vaswani, Noam Shazeer, Niki Parmar (2017)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>Attention Is All You Need</em> vs registry <em>Attention Is All You Need</em></li><li><code>year</code>: <span class='ok-t'>MATCH</span> — cited <em>2017</em> vs registry <em>2017</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Vaswani A, Shazeer N, Parmar N</em> vs registry <em>Ashish Vaswani, Noam Shazeer, Niki Parmar</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;支持&quot;,
+  &quot;evidence_quote&quot;: &quot;We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.&quot;,
+  &quot;claim_quote&quot;: &quot;Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing</pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.</em></p>
+              
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-2">
+          <div class="card-head">
+            <span class="ref-id">[R2]</span>
+            <span class="badge ok">✅ 已核验存在</span>
+            <span class="align-pill">Claim Alignment: <strong>支持</strong></span>
+            <span class="time-pill">Spark: 4.72s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[2] Hu E J, Shen Y, Wallis P, et al. LoRA: Low-Rank Adaptation of Large Language Models[J]. 2021. arXiv:2106.09685</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> LoRA: Low-Rank Adaptation of Large Language Models</p>
+              <p><strong>Authors / Year:</strong> Edward J. Hu, Yelong Shen, Phillip Wallis (2021)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>LoRA: Low-Rank Adaptation of Large Language Models</em> vs registry <em>LoRA: Low-Rank Adaptation of Large Language Models</em></li><li><code>year</code>: <span class='ok-t'>MATCH</span> — cited <em>2021</em> vs registry <em>2021</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Hu E J, Shen Y, Wallis P</em> vs registry <em>Edward J. Hu, Yelong Shen, Phillip Wallis</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;支持&quot;,
+  &quot;evidence_quote&quot;: &quot;We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.&quot;,
+  &quot;claim_quote&quot;: &quot;LoRA </pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks.</em></p>
+              
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-3">
+          <div class="card-head">
+            <span class="ref-id">[R3]</span>
+            <span class="badge ok">✅ 已核验存在</span>
+            <span class="align-pill">Claim Alignment: <strong>部分支持</strong></span>
+            <span class="time-pill">Spark: 4.33s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[3] Lewis P, Perez E, Piktus A, et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks[C]//NeurIPS. 2020. arXiv:2005.11401</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</p>
+              <p><strong>Authors / Year:</strong> Patrick Lewis, Ethan Perez, Aleksandra Piktus (2020)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em> vs registry <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em></li><li><code>year</code>: <span class='ok-t'>MATCH</span> — cited <em>2020</em> vs registry <em>2020</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Lewis P, Perez E, Piktus A</em> vs registry <em>Patrick Lewis, Ethan Perez, Aleksandra Piktus</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;部分支持&quot;,
+  &quot;evidence_quote&quot;: &quot;We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.&quot;,
+  &quot;claim_quote&quot;: &quot;RAG combines pre-trained parametric memory with a non-parametric</pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.</em></p>
+              
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-4">
+          <div class="card-head">
+            <span class="ref-id">[R4]</span>
+            <span class="badge ok">✅ 已核验存在</span>
+            <span class="align-pill">Claim Alignment: <strong>矛盾</strong></span>
+            <span class="time-pill">Spark: 3.76s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[4] Devlin J, Chang M W, Lee K, et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding[C]//NAACL. 2018. arXiv:1810.04805</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
+              <p><strong>Authors / Year:</strong> Jacob Devlin, Ming-Wei Chang, Kenton Lee (2018)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>BERT: Pre-training of Deep Bidirectional Transformers for Language Und</em> vs registry <em>BERT: Pre-training of Deep Bidirectional Transformers for Language Und</em></li><li><code>year</code>: <span class='ok-t'>MATCH</span> — cited <em>2018</em> vs registry <em>2018</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Devlin J, Chang M W, Lee K</em> vs registry <em>Jacob Devlin, Ming-Wei Chang, Kenton Lee</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;矛盾&quot;,
+  &quot;evidence_quote&quot;: &quot;Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.&quot;,
+  &quot;claim_quote&quot;: &quot;Devlin et al. (2018) restricted BERT pre-training to strictly </pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.</em></p>
+              
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-5">
+          <div class="card-head">
+            <span class="ref-id">[R5]</span>
+            <span class="badge ok">✅ 已核验存在</span>
+            <span class="align-pill">Claim Alignment: <strong>支持</strong></span>
+            <span class="time-pill">Spark: 5.23s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[5] Brown T B, Mann B, Ryder N, et al. Language Models are Few-Shot Learners[C]//NeurIPS. 2020. arXiv:2005.14165</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> Language Models are Few-Shot Learners</p>
+              <p><strong>Authors / Year:</strong> Tom B. Brown, Benjamin Mann, Nick Ryder (2020)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>Language Models are Few-Shot Learners</em> vs registry <em>Language Models are Few-Shot Learners</em></li><li><code>year</code>: <span class='ok-t'>MATCH</span> — cited <em>2020</em> vs registry <em>2020</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Brown T B, Mann B, Ryder N</em> vs registry <em>Tom B. Brown, Benjamin Mann, Nick Ryder</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;支持&quot;,
+  &quot;evidence_quote&quot;: &quot;Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, </pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model.</em></p>
+              
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-6">
+          <div class="card-head">
+            <span class="ref-id">[R6]</span>
+            <span class="badge warn">⚠️ 存疑</span>
+            <span class="align-pill">Claim Alignment: <strong>部分支持</strong></span>
+            <span class="time-pill">Spark: 3.73s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[6] Touvron H, Lavril T, Izacard G, et al. Attention Is All You Need[J]. Nature, 2023. arXiv:1706.03762</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Touvron et al. (2023) introduced the Transformer architecture in Nature.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> Attention Is All You Need</p>
+              <p><strong>Authors / Year:</strong> Ashish Vaswani, Noam Shazeer, Niki Parmar (2017)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>Attention Is All You Need</em> vs registry <em>Attention Is All You Need</em></li><li><code>year</code>: <span class='bad-t'>MISMATCH</span> — cited <em>2023</em> vs registry <em>2017</em></li><li><code>author</code>: <span class='bad-t'>MISMATCH</span> — cited <em>Touvron H, Lavril T, Izacard G</em> vs registry <em>Ashish Vaswani, Noam Shazeer, Niki Parmar</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;year&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;部分支持&quot;,
+  &quot;evidence_quote&quot;: &quot;We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.&quot;,
+  &quot;claim_quote&quot;: &quot;Touvron et al. (2023) introduced the Transformer architecture in Nature.&quot;,
+  &quot;reasoning_zh&quot;: &quot;引用条目</pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.</em></p>
+              <ul class="warn-list"><li>张冠李戴风险：引用作者与检索文献作者无交集</li><li>发表年份不一致（引用 2023 vs 检索 2017）</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-7">
+          <div class="card-head">
+            <span class="ref-id">[R7]</span>
+            <span class="badge warn">⚠️ 存疑</span>
+            <span class="align-pill">Claim Alignment: <strong>支持</strong></span>
+            <span class="time-pill">Spark: 3.82s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[7] Wei J, Wang X, Schuurmans D, et al. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models[J]. 2019. arXiv:2201.11903</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP 200)</h4>
+              <p><strong>Title:</strong> Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</p>
+              <p><strong>Authors / Year:</strong> Jason Wei, Xuezhi Wang, Dale Schuurmans (2022)</p>
+              <ul class="diffs"><li><code>title</code>: <span class='ok-t'>MATCH</span> — cited <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em> vs registry <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em></li><li><code>year</code>: <span class='bad-t'>MISMATCH</span> — cited <em>2019</em> vs registry <em>2022</em></li><li><code>author</code>: <span class='ok-t'>MATCH</span> — cited <em>Wei J, Wang X, Schuurmans D</em> vs registry <em>Jason Wei, Xuezhi Wang, Dale Schuurmans</em></li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;partial_mismatch&quot;,
+  &quot;mismatch_fields&quot;: [&quot;author&quot;, &quot;year&quot;, &quot;venue&quot;],
+  &quot;claim_alignment&quot;: &quot;支持&quot;,
+  &quot;evidence_quote&quot;: &quot;We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning.&quot;,
+  &quot;claim_quote&quot;: &quot;Chain-of-thought prompting explores how generating intermediate reasoning</pre>
+              <p><strong>Evidence Quote [VERBATIM_OK]:</strong> <em>We explore how generating a chain of thought -- a series of intermediate reasoning steps -- significantly improves the ability of large language models to perform complex reasoning.</em></p>
+              <ul class="warn-list"><li>发表年份不一致（引用 2019 vs 检索 2022）</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-8">
+          <div class="card-head">
+            <span class="ref-id">[R8]</span>
+            <span class="badge bad">❌ 疑似编造</span>
+            <span class="align-pill">Claim Alignment: <strong>无关</strong></span>
+            <span class="time-pill">Spark: 2.78s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[8] Chen X, Liu Y. Neural Symbolic Verification for Autonomous Agents[J]. Journal of Artificial Intelligence Research, 2024. doi:10.1145/9999999.8888888</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (Crossref / HTTP 404)</h4>
+              <p><strong>Title:</strong> DOI not registered in Crossref (HTTP 404)</p>
+              <p><strong>Authors / Year:</strong> N/A (-)</p>
+              <ul class="diffs"><li>No comparable metadata fields</li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;not_found&quot;,
+  &quot;mismatch_fields&quot;: [&quot;title&quot;, &quot;author&quot;, &quot;year&quot;, &quot;venue&quot;, &quot;doi&quot;],
+  &quot;claim_alignment&quot;: &quot;未提供正文&quot;,
+  &quot;evidence_quote&quot;: null,
+  &quot;claim_quote&quot;: &quot;Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.&quot;,
+  &quot;reasoning_zh&quot;: &quot;经Crossref按DOI精确检索，该文献未找到（HTTP 404，DOI未注册），因此无法核实标题、作者、年份、会议/期刊及DOI等元数据，也无法与正文主张进行对应验证。&quot;
+}</pre>
+              <p><strong>Evidence Quote [NONE]:</strong> <em>N/A</em></p>
+              <ul class="warn-list"><li>DOI 编号格式合法但 Crossref 未注册（HTTP 404，典型 LLM 编造 DOI 模式）</li><li>Gate: 目标文献未核验存在，禁止由模型宣称正文声明被支持</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-9">
+          <div class="card-head">
+            <span class="ref-id">[R9]</span>
+            <span class="badge bad">❌ 疑似编造</span>
+            <span class="align-pill">Claim Alignment: <strong>无关</strong></span>
+            <span class="time-pill">Spark: 2.65s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[9] Zhang W, Miller R. Quantum-Enhanced Prompt Alignment in Clinical LLMs[J]. Nature Medicine, 2025. doi:10.1038/s41591-025-99999-z</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (Crossref / HTTP 404)</h4>
+              <p><strong>Title:</strong> DOI not registered in Crossref (HTTP 404)</p>
+              <p><strong>Authors / Year:</strong> N/A (-)</p>
+              <ul class="diffs"><li>No comparable metadata fields</li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;not_found&quot;,
+  &quot;mismatch_fields&quot;: [&quot;title&quot;, &quot;author&quot;, &quot;year&quot;, &quot;venue&quot;, &quot;doi&quot;],
+  &quot;claim_alignment&quot;: &quot;未提供正文&quot;,
+  &quot;evidence_quote&quot;: null,
+  &quot;claim_quote&quot;: &quot;Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.&quot;,
+  &quot;reasoning_zh&quot;: &quot;经Crossref按DOI精确检索，该文献未注册（HTTP 404），返回未找到任何标题、作者、年份、期刊或DOI信息，因此元数据无法与任何真实文献匹配；手稿主张因缺乏可核验的正文或文献支撑，无法进行有效对齐。&quot;
+}</pre>
+              <p><strong>Evidence Quote [NONE]:</strong> <em>N/A</em></p>
+              <ul class="warn-list"><li>DOI 编号格式合法但 Crossref 未注册（HTTP 404，典型 LLM 编造 DOI 模式）</li><li>Gate: 目标文献未核验存在，禁止由模型宣称正文声明被支持</li></ul>
+            </div>
+          </div>
+        </section>
+        <section class="card" id="ref-10">
+          <div class="card-head">
+            <span class="ref-id">[R10]</span>
+            <span class="badge muted">⬜ 无法核验</span>
+            <span class="align-pill">Claim Alignment: <strong>未提供正文</strong></span>
+            <span class="time-pill">Spark: 1.92s</span>
+          </div>
+          <div class="grid">
+            <div class="pane">
+              <h4>1. Parsed Citation &amp; Claim</h4>
+              <p class="raw">[10] Internal Lab Working Group. 2025 年度内部评测基线白皮书[R]. 内部技术报告, 2025.</p>
+              <p class="claim"><strong>Manuscript Claim:</strong> 未提供正文</p>
+            </div>
+            <div class="pane">
+              <h4>2. Ground Truth (arXiv / HTTP -)</h4>
+              <p><strong>Title:</strong> Skipped arXiv title search for non-ASCII / Chinese title (out of arXiv scope)</p>
+              <p><strong>Authors / Year:</strong> N/A (-)</p>
+              <ul class="diffs"><li>No comparable metadata fields</li></ul>
+            </div>
+            <div class="pane">
+              <h4>3. Spark-X2.6-4B Output &amp; Deterministic Gate</h4>
+              <pre class="spark-raw">{
+  &quot;metadata_assessment&quot;: &quot;not_found&quot;,
+  &quot;mismatch_fields&quot;: [],
+  &quot;claim_alignment&quot;: &quot;未提供正文&quot;,
+  &quot;evidence_quote&quot;: null,
+  &quot;claim_quote&quot;: null,
+  &quot;reasoning_zh&quot;: &quot;检索在arXiv范围内因标题为非ASCII/中文而跳过，未找到对应文献条目，因此元数据无法与外部真实文献匹配；手稿正文未提供，无法进行正文层面的核验。&quot;
+}</pre>
+              <p><strong>Evidence Quote [NONE]:</strong> <em>N/A</em></p>
+              <ul class="warn-list"><li>检索边界外或网络受限：Skipped arXiv title search for non-ASCII / Chinese title (out of arXiv scope)</li></ul>
+            </div>
+          </div>
+        </section>
+</body>
+</html>

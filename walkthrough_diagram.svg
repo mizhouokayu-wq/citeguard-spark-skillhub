@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="420" viewBox="0 0 1120 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="100%" stop-color="#111a33"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+  <rect width="1120" height="420" rx="14" fill="url(#bg)" stroke="#24304a" stroke-width="2"/>
+  <text x="36" y="46" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">CiteGuard · Spark-X2.6-4B × SkillHub (citation-integrity-verifier)</text>
+  <text x="36" y="72" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="13">Four-Stage Source-Grounded Citation &amp; Claim-Alignment Verification Architecture</text>
+
+  <!-- Stage 1 -->
+  <rect x="36" y="105" width="230" height="240" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="54" y="135" fill="#38bdf8" font-family="monospace" font-size="13" font-weight="700">STEP 1 · PARSE &amp; SYNTAX</text>
+  <text x="54" y="164" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Input: BibTeX / GB/T 7714 / APA</text>
+  <text x="54" y="186" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">+ Manuscript Claim Sentences</text>
+  <text x="54" y="218" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Extract DOI / arXiv ID / Title</text>
+  <text x="54" y="238" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Validate DOI syntax separately</text>
+  <text x="54" y="258" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">  from registry existence</text>
+  <text x="54" y="318" fill="#7dd3fc" font-family="monospace" font-size="11">citeguard/parser.py</text>
+
+  <line x1="266" y1="225" x2="298" y2="225" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2 -->
+  <rect x="304" y="105" width="238" height="240" rx="10" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="322" y="135" fill="#fbbf24" font-family="monospace" font-size="13" font-weight="700">STEP 2 · GROUND TRUTH</text>
+  <text x="322" y="164" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Authoritative API Lookup</text>
+  <text x="322" y="186" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Crossref · arXiv · OpenAlex</text>
+  <text x="322" y="218" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• HTTP 404 DOI → Flagged</text>
+  <text x="322" y="238" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Retrieves real title, authors,</text>
+  <text x="322" y="258" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">  year, and full abstract</text>
+  <text x="322" y="318" fill="#fde68a" font-family="monospace" font-size="11">citeguard/resolver.py</text>
+
+  <line x1="542" y1="225" x2="574" y2="225" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3 -->
+  <rect x="580" y="105" width="244" height="240" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="598" y="135" fill="#34d399" font-family="monospace" font-size="13" font-weight="700">STEP 3 · SPARK-X2.6-4B</text>
+  <text x="598" y="164" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Local GGUF Q4_K_M (Vulkan)</text>
+  <text x="598" y="186" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Identifiable Step (temp=0)</text>
+  <text x="598" y="218" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Evaluates Claim Alignment:</text>
+  <text x="598" y="238" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">  支持 / 部分支持 / 无关 / 矛盾</text>
+  <text x="598" y="258" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Extracts verbatim quotes from</text>
+  <text x="598" y="278" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">  abstract &amp; manuscript claim</text>
+  <text x="598" y="318" fill="#6ee7b7" font-family="monospace" font-size="11">citeguard/spark_runner.py</text>
+
+  <line x1="824" y1="225" x2="856" y2="225" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4 -->
+  <rect x="862" y="105" width="222" height="240" rx="10" fill="#0f172a" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="880" y="135" fill="#fb7185" font-family="monospace" font-size="13" font-weight="700">STEP 4 · SKILL GATE</text>
+  <text x="880" y="164" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">Deterministic Policy Guard</text>
+  <text x="880" y="186" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="13">4-Tier Status + Evidence</text>
+  <text x="880" y="218" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Blocks false ✅ on 404 DOI</text>
+  <text x="880" y="238" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Verifies verbatim quotes</text>
+  <text x="880" y="258" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">• Outputs report.md +</text>
+  <text x="880" y="278" fill="#94a3b8" font-family="Segoe UI, sans-serif" font-size="12">  evidence_replay.html</text>
+  <text x="880" y="318" fill="#fda4af" font-family="monospace" font-size="11">citeguard/verifier.py</text>
+
+  <text x="36" y="390" fill="#64748b" font-family="monospace" font-size="12">SkillHub: citation-integrity-verifier v20261104.101003 | Model: XHToken/Spark-X2.6-4B-GGUF (Q4_K_M) | Entrant: teliso_71</text>
+</svg>

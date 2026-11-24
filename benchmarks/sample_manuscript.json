@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "title": "CiteGuard Benchmark Suite (10 Real & Synthetic-Hallucinated Academic Citations)",
+    "model": "Spark-X2.6-4B-Q4_K_M",
+    "skill": "citation-integrity-verifier v20261104.101003"
+  },
+  "items": [
+    {
+      "ref_id": "R1",
+      "citation": "[1] Vaswani A, Shazeer N, Parmar N, et al. Attention Is All You Need[C]//Advances in Neural Information Processing Systems. 2017. arXiv:1706.03762",
+      "claim_text": "Vaswani et al. (2017) proposed the Transformer architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+      "expected_status": "✅ 已核验存在",
+      "expected_alignment": "支持"
+    },
+    {
+      "ref_id": "R2",
+      "citation": "[2] Hu E J, Shen Y, Wallis P, et al. LoRA: Low-Rank Adaptation of Large Language Models[J]. 2021. arXiv:2106.09685",
+      "claim_text": "LoRA freezes pre-trained model weights and injects trainable rank decomposition matrices into Transformer layers to reduce trainable parameters.",
+      "expected_status": "✅ 已核验存在",
+      "expected_alignment": "支持"
+    },
+    {
+      "ref_id": "R3",
+      "citation": "[3] Lewis P, Perez E, Piktus A, et al. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks[C]//NeurIPS. 2020. arXiv:2005.11401",
+      "claim_text": "RAG combines pre-trained parametric memory with a non-parametric dense vector index of Wikipedia, achieving exact 100% factual accuracy without any hallucinations on medical licensing exams.",
+      "expected_status": "✅ 已核验存在",
+      "expected_alignment": "部分支持"
+    },
+    {
+      "ref_id": "R4",
+      "citation": "[4] Devlin J, Chang M W, Lee K, et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding[C]//NAACL. 2018. arXiv:1810.04805",
+      "claim_text": "Devlin et al. (2018) restricted BERT pre-training to strictly unidirectional left-to-right causal attention so that it cannot condition on right context.",
+      "expected_status": "✅ 已核验存在",
+      "expected_alignment": "矛盾"
+    },
+    {
+      "ref_id": "R5",
+      "citation": "[5] Brown T B, Mann B, Ryder N, et al. Language Models are Few-Shot Learners[C]//NeurIPS. 2020. arXiv:2005.14165",
+      "claim_text": "The Transformer architecture achieves strong zero-shot and few-shot performance by scaling autoregressive language models without gradient updates.",
+      "expected_status": "✅ 已核验存在",
+      "expected_alignment": "支持"
+    },
+    {
+      "ref_id": "R6",
+      "citation": "[6] Touvron H, Lavril T, Izacard G, et al. Attention Is All You Need[J]. Nature, 2023. arXiv:1706.03762",
+      "claim_text": "Touvron et al. (2023) introduced the Transformer architecture in Nature.",
+      "expected_status": "⚠️ 存疑",
+      "expected_alignment": "矛盾"
+    },
+    {
+      "ref_id": "R7",
+      "citation": "[7] Wei J, Wang X, Schuurmans D, et al. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models[J]. 2019. arXiv:2201.11903",
+      "claim_text": "Chain-of-thought prompting explores how generating intermediate reasoning steps improves complex reasoning in large language models.",
+      "expected_status": "⚠️ 存疑",
+      "expected_alignment": "支持"
+    },
+    {
+      "ref_id": "R8",
+      "citation": "[8] Chen X, Liu Y. Neural Symbolic Verification for Autonomous Agents[J]. Journal of Artificial Intelligence Research, 2024. doi:10.1145/9999999.8888888",
+      "claim_text": "Chen and Liu (2024) demonstrated a 98.4% reduction in agent tool-call errors using symbolic verification.",
+      "expected_status": "❌ 疑似编造",
+      "expected_alignment": "无关"
+    },
+    {
+      "ref_id": "R9",
+      "citation": "[9] Zhang W, Miller R. Quantum-Enhanced Prompt Alignment in Clinical LLMs[J]. Nature Medicine, 2025. doi:10.1038/s41591-025-99999-z",
+      "claim_text": "Quantum-enhanced prompt alignment eliminates diagnostic variance across clinical cohorts.",
+      "expected_status": "❌ 疑似编造",
+      "expected_alignment": "无关"
+    },
+    {
+      "ref_id": "R10",
+      "citation": "[10] Internal Lab Working Group. 2025 年度内部评测基线白皮书[R]. 内部技术报告, 2025.",
+      "claim_text": null,
+      "expected_status": "⬜ 无法核验",
+      "expected_alignment": "未提供正文"
+    }
+  ]
+}

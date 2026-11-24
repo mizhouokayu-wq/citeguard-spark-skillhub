@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+artifacts_dryrun/
+.tmp-chrome-profile/
+vendor/*/skill.zip
+STATUS.md
+SUBMISSION_GH.md
