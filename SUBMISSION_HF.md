@@ -76,6 +76,6 @@
   3. **人工复核边界**：如 `SKILL.md` 所规定，本工具仅提供技术证据与疑点清单，绝不直接下「学术不端」定性结论。
 
 ## 贡献者与披露
-- **参赛者**：个人参赛，`teliso_71`（GitHub: [@mizhouokayu-wq](https://github.com/mizhouokayu-wq)）
+- **参赛者**：个人参赛，`teliso_71`（GitHub: [@mizhouokayu-wq](https://github.com/mizhouokayu-wq) · Hugging Face: [@teliso-71](https://huggingface.co/teliso-71)）
 - **AI 辅助开发方式**：本项目代码实现、单元测试、基准构造与本地运行报告整理均由 AI 编程助手协作完成；所有本地模型运行数据、API 返回快照与截图均在本地硬件真实执行验证。
 - **数据、依赖来源与授权**：代码按 MIT/Apache-2.0 兼容开源；外部元数据来自 Crossref REST API、arXiv API 与 OpenAlex Works API 公开接口；SkillHub 技能来自 `iflytek/skillhub` 官方市场（`citation-integrity-verifier v20261104.101003`）。

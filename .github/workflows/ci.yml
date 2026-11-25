@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  unit-and-cli-smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run deterministic unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run offline deterministic CLI smoke check
+        run: |
+          python -m citeguard.cli \
+            --input benchmarks/sample_manuscript.json \
+            --out-dir /tmp/citeguard_ci_out \
+            --cache benchmarks/ground_truth_cache.json \
+            --offline \
+            --skip-spark
+          test -f /tmp/citeguard_ci_out/report.md
+          test -f /tmp/citeguard_ci_out/results.json
+          test -f /tmp/citeguard_ci_out/evidence_replay.html

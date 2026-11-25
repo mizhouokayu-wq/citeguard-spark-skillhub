@@ -24,9 +24,19 @@
 
 ## 3. 快速复现与测试
 ```bash
-# 1. 运行确定性单元测试（无需模型与外网）
+# 0. 可选：以可编辑模式安装（仅依赖 Python >= 3.10 标准库，零第三方依赖）
+pip install -e .
+
+# 1. 运行确定性单元测试与离线 CLI 冒烟测试（无需模型与外网）
 python -m unittest discover -s tests -v
 
-# 2. 运行完整本地 Spark-X2.6-4B 核验流水线（默认自动启动 llama-server.exe）
+# 2. 运行离线确定性门控流水线（使用缓存题录快照）
+python -m citeguard.cli --input benchmarks/sample_manuscript.json --out-dir artifacts_dryrun --cache benchmarks/ground_truth_cache.json --offline --skip-spark
+
+# 3. 运行完整本地 Spark-X2.6-4B 核验流水线（默认自动启动 llama-server.exe）
 python -m citeguard.cli --input benchmarks/sample_manuscript.json --out-dir artifacts --cache benchmarks/ground_truth_cache.json
 ```
+
+## 4. 参赛材料与自动化 CI
+- 完整参赛展示说明：[`SUBMISSION_HF.md`](./SUBMISSION_HF.md)
+- GitHub Actions 自动化验证：`.github/workflows/ci.yml`（Python 3.10–3.12 单元测试 + 10 条基准离线冒烟）

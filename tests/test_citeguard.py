@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+from citeguard.cli import main as cli_main
 from citeguard.parser import parse_references, validate_doi_syntax
-from citeguard.pipeline import run_pipeline
+from citeguard.pipeline import load_input_bundle, run_pipeline
 from citeguard.resolver import GroundTruthRecord, strip_xml_tags
 from citeguard.spark_runner import SparkInferenceResult, extract_first_json_object
 from citeguard.verifier import (
@@ -165,6 +168,81 @@ class CiteGuardTests(unittest.TestCase):
             self.assertTrue((out / "report.md").exists())
             self.assertTrue((out / "results.json").exists())
             self.assertTrue((out / "evidence_replay.html").exists())
+
+    def test_apa_and_quoted_title_parsing(self) -> None:
+        apa = (
+            "Dettmers, T., Pagnoni, A., Holtzman, A., & Zettlemoyer, L. (2023). "
+            "QLoRA: Efficient Finetuning of Quantized LLMs. arXiv:2305.14314"
+        )
+        parsed_apa = parse_references(apa)
+        self.assertEqual(len(parsed_apa), 1)
+        self.assertEqual(parsed_apa[0].format_detected, "APA")
+        self.assertEqual(parsed_apa[0].title, "QLoRA: Efficient Finetuning of Quantized LLMs")
+        self.assertEqual(parsed_apa[0].year, 2023)
+        self.assertEqual(parsed_apa[0].arxiv_id, "2305.14314")
+
+        quoted = '[2] Dao T. "FlashAttention: Fast and Memory-Efficient Exact Attention". NeurIPS 2022. arXiv:2205.14135'
+        parsed_q = parse_references(quoted)
+        self.assertEqual(parsed_q[0].title, "FlashAttention: Fast and Memory-Efficient Exact Attention")
+        self.assertEqual(parsed_q[0].year, 2022)
+        self.assertEqual(parsed_q[0].arxiv_id, "2205.14135")
+
+    def test_title_mismatch_forces_suspicious(self) -> None:
+        c = parse_references("[4] Vaswani A. Completely Unrelated Paper Title[C]. 2017. arXiv:1706.03762")[0]
+        gt = GroundTruthRecord(
+            found=True,
+            source="arXiv",
+            lookup_method="arxiv_id_exact",
+            lookup_url="https://export.arxiv.org/api/query?id_list=1706.03762",
+            http_status=200,
+            title="Attention Is All You Need",
+            authors=["Ashish Vaswani"],
+            year=2017,
+            abstract="The dominant sequence transduction models are based on attention.",
+        )
+        v = evaluate_citation(c, gt, None)
+        self.assertEqual(v.status, STATUS_SUSPICIOUS)
+        self.assertTrue(any("标题" in p for p in v.hallucination_patterns))
+
+    def test_load_bibtex_file_bundle(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            bib_path = Path(tmp) / "refs.bib"
+            bib_path.write_text(
+                "@article{hu2021lora,\n  title={LoRA: Low-Rank Adaptation of Large Language Models},\n"
+                "  author={Hu, Edward J. and Wallis, Phillip},\n  journal={ICLR},\n  year={2022},\n"
+                "  eprint={2106.09685}\n}\n",
+                encoding="utf-8",
+            )
+            entries, meta = load_input_bundle(bib_path)
+            self.assertEqual(meta, {})
+            self.assertEqual(len(entries), 1)
+            self.assertEqual(entries[0].ref_id, "hu2021lora")
+            self.assertEqual(entries[0].arxiv_id, "2106.09685")
+
+    def test_cli_offline_benchmark_smoke(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        sample_inp = root / "benchmarks" / "sample_manuscript.json"
+        cache_path = root / "benchmarks" / "ground_truth_cache.json"
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "cli_out"
+            argv = [
+                "citeguard",
+                "--input",
+                str(sample_inp),
+                "--out-dir",
+                str(out_dir),
+                "--cache",
+                str(cache_path),
+                "--offline",
+                "--skip-spark",
+            ]
+            with patch.object(sys, "argv", argv):
+                rc = cli_main()
+            self.assertEqual(rc, 0)
+            data = json.loads((out_dir / "results.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(data["items"]), 10)
+            self.assertTrue((out_dir / "report.md").exists())
+            self.assertTrue((out_dir / "evidence_replay.html").exists())
 
 
 if __name__ == "__main__":
